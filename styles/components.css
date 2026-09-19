@@ -356,7 +356,7 @@
 }
 
 .widget--minimized .widget__body {
-  display: none;
+  display: block;
 }
 
 .widget__status {
