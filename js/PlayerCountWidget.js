@@ -65,8 +65,7 @@ export class PlayerCountWidget extends UIComponent {
 
     try {
       const target = `https://steamspy.com/api.php?request=appdetails&appid=${PlayerCountWidget.CS2_APP_ID}`;
-      const url = `https://corsproxy.io/?url=${encodeURIComponent(target)}`;
-      const response = await fetch(url, { signal: this._fetchController.signal });
+      const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`;
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
       const data = await response.json();
