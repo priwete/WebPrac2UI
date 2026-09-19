@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS2 Skins Hub — панель управления виджетами</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+</head>
+<body>
+  <div class="layout">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <div class="sidebar__logo">
+        <span class="sidebar__logo-main">CS2</span>
+        <span class="sidebar__logo-sub">SKINS HUB</span>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Основная навигация">
+        <a class="sidebar__link sidebar__link--active" href="#">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5" /><path d="M6 10v9h12v-9" /></svg>
+          Главная
+        </a>
+        <a class="sidebar__link" href="#skins">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="13" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><rect x="13" y="13" width="7" height="7" rx="1.5" /></svg>
+          Скины
+        </a>
+        <a class="sidebar__link" href="#widget-grid">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" /></svg>
+          Цены
+        </a>
+        <a class="sidebar__link" href="#widget-grid">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 10 11l4 4 6-7" /></svg>
+          Тренды
+        </a>
+        <a class="sidebar__link" href="#">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" /></svg>
+          Мои избранные
+        </a>
+        <a class="sidebar__link" href="#news">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="1.5" /><path d="M8 9h8M8 13h8M8 17h5" /></svg>
+          Новости
+        </a>
+        <a class="sidebar__link" href="#">
+          <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" /><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3h-4l-.6 2.5a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.6a7 7 0 0 0 0 2.4l-2 1.6 2 3.4 2.3-.9a7 7 0 0 0 2 1.2L10 21h4l.6-2.5a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.6c.07-.4.1-.8.1-1.2Z" /></svg>
+          Настройки
+        </a>
+      </nav>
+
+      <blockquote class="sidebar__slogan">
+        «GOOD SKINS<br />BETTER GAMES»
+      </blockquote>
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <div class="main">
+      <!-- ============ TOPBAR ============ -->
+      <header class="topbar">
+        <label class="topbar__search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+          <input type="search" placeholder="Поиск скинов, коллекций…" />
+          <kbd>Ctrl K</kbd>
+        </label>
+
+        <button type="button" class="topbar__bell" aria-label="Уведомления">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>
+        </button>
+
+        <div class="topbar__user">
+          <img class="topbar__avatar" src="assets/placeholder.svg" alt="тут должно быть изображение" width="36" height="36" />
+          <div class="topbar__user-info">
+            <span class="topbar__user-name">Dmitry</span>
+            <span class="topbar__user-rank">Silver Elite</span>
+          </div>
+          <svg class="topbar__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </div>
+      </header>
+
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <img class="hero__bg" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+        <div class="hero__scrim"></div>
+        <span class="hero__badge">COUNTER<br />STRIKE 2</span>
+        <div class="hero__content">
+          <h1 class="hero__title">SKINS<br /><span class="hero__title-accent">MOVE</span><br />THE GAME</h1>
+          <p class="hero__subtitle">Актуальные цены. Реальные тренды.<br />В одном месте.</p>
+          <a class="btn btn--accent btn--large" href="#skins">Исследовать скины →</a>
+        </div>
+      </section>
+
+      <!-- ============ ВИДЖЕТЫ (OOP dashboard) ============ -->
+      <section class="widgets-panel" id="widgets" aria-labelledby="widgets-heading">
+        <div class="widgets-panel__header">
+          <h2 id="widgets-heading">Панель виджетов</h2>
+          <div class="widgets-panel__actions">
+            <button type="button" class="btn btn--ghost" data-add-widget="players">+ Онлайн игроков</button>
+            <button type="button" class="btn btn--ghost" data-add-widget="price">+ Курс</button>
+            <button type="button" class="btn btn--ghost" data-add-widget="quote">+ Совет дня</button>
+            <button type="button" class="btn btn--ghost" data-add-widget="todo">+ Список дел</button>
+          </div>
+        </div>
+        <p class="widgets-panel__hint">
+          Виджеты ниже — самостоятельные компоненты (класс <code>UIComponent</code> и его наследники).
+          Их можно добавлять кнопками выше и закрывать крестиком в углу каждой карточки.
+        </p>
+        <div class="widget-grid" id="widget-grid"></div>
+      </section>
+
+      <!-- ============ SKINS ============ -->
+      <section class="skins" id="skins" aria-labelledby="skins-heading">
+        <div class="tabs" role="tablist" aria-label="Фильтр скинов">
+          <button class="tabs__item" role="tab" aria-selected="true">Популярные</button>
+          <button class="tabs__item" role="tab" aria-selected="false">Растущие</button>
+          <button class="tabs__item" role="tab" aria-selected="false">Падающие</button>
+          <button class="tabs__item" role="tab" aria-selected="false">Новые</button>
+          <button class="tabs__item" role="tab" aria-selected="false">Избранные</button>
+          <select class="tabs__select" aria-label="Фильтр по качеству">
+            <option>Все качества</option>
+            <option>Factory New</option>
+            <option>Minimal Wear</option>
+            <option>Field-Tested</option>
+          </select>
+        </div>
+
+        <h2 class="visually-hidden" id="skins-heading">Список скинов</h2>
+
+        <div class="skin-cards">
+          <article class="skin-card">
+            <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
+            <img class="skin-card__img" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+            <h3 class="skin-card__name">★ Karambit Fade</h3>
+            <p class="skin-card__wear">Factory New</p>
+            <p class="skin-card__price">$ 2,847.32 <span class="skin-card__delta skin-card__delta--up">▲ 6.23%</span></p>
+          </article>
+
+          <article class="skin-card">
+            <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
+            <img class="skin-card__img" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+            <h3 class="skin-card__name">AWP Dragon Lore</h3>
+            <p class="skin-card__wear">Minimal Wear</p>
+            <p class="skin-card__price">$ 12,430.00 <span class="skin-card__delta skin-card__delta--up">▲ 2.14%</span></p>
+          </article>
+
+          <article class="skin-card">
+            <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
+            <img class="skin-card__img" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+            <h3 class="skin-card__name">AK-47 Redline</h3>
+            <p class="skin-card__wear">Field-Tested</p>
+            <p class="skin-card__price">$ 45.20 <span class="skin-card__delta skin-card__delta--down">▼ 1.32%</span></p>
+          </article>
+
+          <article class="skin-card">
+            <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
+            <img class="skin-card__img" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+            <h3 class="skin-card__name">M4A1-S Printstream</h3>
+            <p class="skin-card__wear">Minimal Wear</p>
+            <p class="skin-card__price">$ 310.15 <span class="skin-card__delta skin-card__delta--up">▲ 3.87%</span></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ COLLECTIONS + NEWS ============ -->
+      <div class="lower-grid">
+        <section class="collections" aria-labelledby="collections-heading">
+          <div class="section-header">
+            <h2 id="collections-heading">Топ коллекции</h2>
+            <a href="#" class="section-header__link">Смотреть все →</a>
+          </div>
+          <div class="collections__list">
+            <article class="collection-card">
+              <img class="collection-card__icon" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <h3>The Armory Collection</h3>
+              <p>120 скинов</p>
+            </article>
+            <article class="collection-card">
+              <img class="collection-card__icon" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <h3>Anubis Collection</h3>
+              <p>19 скинов</p>
+            </article>
+            <article class="collection-card">
+              <img class="collection-card__icon" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <h3>Mirage Collection</h3>
+              <p>16 скинов</p>
+            </article>
+            <article class="collection-card">
+              <img class="collection-card__icon" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <h3>Inferno Collection</h3>
+              <p>16 скинов</p>
+            </article>
+            <article class="collection-card">
+              <img class="collection-card__icon" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <h3>Nuke Collection</h3>
+              <p>17 скинов</p>
+            </article>
+          </div>
+        </section>
+
+        <aside class="news" id="news" aria-labelledby="news-heading">
+          <div class="section-header">
+            <h2 id="news-heading">Последние новости</h2>
+            <a href="#" class="section-header__link">Все новости →</a>
+          </div>
+          <ul class="news__list">
+            <li class="news__item">
+              <img class="news__thumb" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <div>
+                <p class="news__title">Обновление CS2: новая коллекция скинов</p>
+                <p class="news__date">12 сен 2026</p>
+              </div>
+            </li>
+            <li class="news__item">
+              <img class="news__thumb" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <div>
+                <p class="news__title">BLAST Premier Fall 2026 — результаты</p>
+                <p class="news__date">10 сен 2026</p>
+              </div>
+            </li>
+            <li class="news__item">
+              <img class="news__thumb" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <div>
+                <p class="news__title">Новые наклейки к мейджору</p>
+                <p class="news__date">8 сен 2026</p>
+              </div>
+            </li>
+            <li class="news__item">
+              <img class="news__thumb" src="assets/placeholder.svg" alt="тут должно быть изображение" />
+              <div>
+                <p class="news__title">Изменения на торговой площадке Steam</p>
+                <p class="news__date">6 сен 2026</p>
+              </div>
+            </li>
+          </ul>
+
+          <a class="news__banner" href="#">
+            <img src="assets/placeholder.svg" alt="тут должно быть изображение" />
+            <span>SAME GAME<br />NEW ERA</span>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
