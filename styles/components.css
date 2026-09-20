@@ -1,31 +1,37 @@
 /* ===========================================================
-   Sidebar
+   Sidebar — mobile-first: горизонтальная лента
    =========================================================== */
 .sidebar {
-  width: var(--sidebar-w);
+  width: 100%;
   flex-shrink: 0;
   background: var(--bg-raised);
-  border-right: 1px solid var(--border-soft);
-  padding: 22px 18px;
+  border-bottom: 1px solid var(--border-soft);
+  padding: 10px 12px;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.sidebar::-webkit-scrollbar { display: none; }
 
 .sidebar__logo {
   display: flex;
   flex-direction: column;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .sidebar__logo-main {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: 0.02em;
 }
 
 .sidebar__logo-sub {
-  font-size: 0.62rem;
+  font-size: 0.55rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   color: var(--accent);
@@ -34,24 +40,26 @@
 
 .sidebar__nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .sidebar__link {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
+  gap: 8px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .sidebar__icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
 }
 
@@ -67,33 +75,30 @@
 }
 
 .sidebar__slogan {
-  margin-top: auto;
-  font-size: 0.75rem;
-  color: var(--text-faint);
-  font-style: italic;
-  border-left: 2px solid var(--border);
-  padding-left: 12px;
+  display: none;
 }
 
 /* ===========================================================
-   Topbar
+   Topbar — mobile-first: поиск на всю ширину
    =========================================================== */
 .topbar {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .topbar__search {
-  flex: 1;
-  max-width: 420px;
+  flex: 1 1 100%;
+  order: 2;
+  max-width: none;
   display: flex;
   align-items: center;
   gap: 10px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 9px 14px;
+  padding: 9px 12px;
   color: var(--text-faint);
 }
 
@@ -105,6 +110,7 @@
 
 .topbar__search input {
   flex: 1;
+  min-width: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -116,6 +122,7 @@
 }
 
 .topbar__search kbd {
+  display: none;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   background: var(--bg-raised);
@@ -126,7 +133,8 @@
 }
 
 .topbar__bell {
-  margin-left: auto;
+  order: 1;
+  margin-left: 0;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -143,10 +151,12 @@
 }
 
 .topbar__user {
+  order: 1;
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 4px 10px 4px 4px;
+  padding: 4px;
   border-radius: 999px;
   border: 1px solid var(--border);
   cursor: pointer;
@@ -160,7 +170,7 @@
 }
 
 .topbar__user-info {
-  display: flex;
+  display: none;
   flex-direction: column;
   line-height: 1.15;
 }
@@ -176,22 +186,23 @@
 }
 
 .topbar__chevron {
+  display: none;
   width: 14px;
   height: 14px;
   color: var(--text-faint);
 }
 
 /* ===========================================================
-   Hero
+   Hero — mobile-first: ниже, текст снизу
    =========================================================== */
 .hero {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 300px;
+  min-height: 200px;
   display: flex;
-  align-items: center;
-  padding: 40px;
+  align-items: flex-end;
+  padding: 20px 18px;
   isolation: isolate;
 }
 
@@ -207,15 +218,15 @@
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(6, 7, 10, 0.94) 15%, rgba(6, 7, 10, 0.55) 55%, rgba(6, 7, 10, 0.25) 100%);
+  background: linear-gradient(180deg, rgba(6, 7, 10, 0.35) 0%, rgba(6, 7, 10, 0.95) 75%);
   z-index: -1;
 }
 
 .hero__badge {
   position: absolute;
-  top: 28px;
-  right: 32px;
-  font-size: 0.9rem;
+  top: 14px;
+  right: 14px;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--accent);
   line-height: 1.2;
@@ -223,9 +234,9 @@
 }
 
 .hero__title {
-  font-size: 2.6rem;
+  font-size: 1.6rem;
   font-weight: 800;
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.01em;
 }
 
@@ -234,23 +245,24 @@
 }
 
 .hero__subtitle {
-  margin-top: 16px;
+  margin-top: 10px;
   color: #d7dae2;
-  max-width: 30ch;
+  font-size: 0.85rem;
+  max-width: 34ch;
 }
 
 .hero__content .btn {
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 /* ===========================================================
-   Widgets panel (OOP dashboard section)
+   Widgets panel — mobile-first: кнопки в 2 колонки
    =========================================================== */
 .widgets-panel {
   background: var(--bg-raised);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
-  padding: 22px 24px;
+  padding: 16px 14px;
 }
 
 .widgets-panel__header {
@@ -258,23 +270,30 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
 }
 
 .widgets-panel__header h2 {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
 }
 
 .widgets-panel__actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
+  width: 100%;
+}
+
+.widgets-panel__actions .btn {
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  min-height: 36px;
 }
 
 .widgets-panel__hint {
   margin-top: 10px;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   max-width: 70ch;
 }
@@ -288,24 +307,26 @@
 }
 
 .widget-grid {
-  margin-top: 18px;
+  margin-top: 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .widget-grid--empty::after {
   content: 'Виджетов пока нет — добавьте один из кнопок выше.';
   grid-column: 1 / -1;
   color: var(--text-faint);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   padding: 20px;
   text-align: center;
   border: 1px dashed var(--border);
   border-radius: var(--radius-md);
 }
 
-/* ---- generic widget chrome (UIComponent.render) ---- */
+/* ===========================================================
+   Widget chrome (UIComponent.render)
+   =========================================================== */
 .widget {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -319,22 +340,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px 10px;
+  gap: 10px;
+  padding: 12px 12px 8px;
 }
 
 .widget__title {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .widget__controls {
   display: flex;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .widget__icon-btn {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 7px;
   border: 1px solid var(--border);
   background: transparent;
@@ -352,11 +377,7 @@
 }
 
 .widget__body {
-  padding: 4px 16px 18px;
-}
-
-.widget--minimized .widget__body {
-  display: block;
+  padding: 4px 12px 14px;
 }
 
 .widget__status {
@@ -380,7 +401,9 @@
   color: var(--text-faint);
 }
 
-/* ---- ToDoWidget ---- */
+/* ===========================================================
+   ToDoWidget
+   =========================================================== */
 .todo__form {
   display: flex;
   gap: 8px;
@@ -389,6 +412,7 @@
 
 .todo__input {
   flex: 1;
+  min-width: 0;
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -416,8 +440,8 @@
 }
 
 .todo__toggle {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
   border-radius: 6px;
   border: 1px solid var(--border);
@@ -431,6 +455,7 @@
 
 .todo__text {
   flex: 1;
+  min-width: 0;
   font-size: 0.88rem;
   word-break: break-word;
 }
@@ -444,25 +469,30 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   opacity: 0.7;
+  padding: 4px;
 }
 
 .todo__remove:hover {
   opacity: 1;
 }
 
-/* ---- QuoteWidget ---- */
+/* ===========================================================
+   QuoteWidget
+   =========================================================== */
 .quote__text {
   margin: 4px 0 14px;
   padding-left: 14px;
   border-left: 3px solid var(--accent);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #e6e8ee;
   font-style: italic;
 }
 
-/* ---- PriceWidget ---- */
+/* ===========================================================
+   PriceWidget
+   =========================================================== */
 .price__main {
   display: flex;
   align-items: baseline;
@@ -480,7 +510,7 @@
 
 .price__value {
   font-family: var(--font-mono);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 
@@ -489,17 +519,12 @@
   font-weight: 600;
 }
 
-.price__change--up {
-  color: var(--up);
-}
-
-.price__change--down {
-  color: var(--down);
-}
+.price__change--up { color: var(--up); }
+.price__change--down { color: var(--down); }
 
 .price__chart {
   width: 100%;
-  height: 60px;
+  height: 56px;
   margin-bottom: 12px;
 }
 
@@ -509,33 +534,42 @@
   stroke-width: 2;
 }
 
-/* ---- PlayerCountWidget ---- */
+/* ===========================================================
+   PlayerCountWidget
+   =========================================================== */
 .players__value {
   font-family: var(--font-mono);
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 6px;
 }
 
 /* ===========================================================
-   Skins tabs + grid
+   Tabs — horizontal scroll на мобильном
    =========================================================== */
 .tabs {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  margin-bottom: 14px;
 }
+.tabs::-webkit-scrollbar { display: none; }
 
 .tabs__item {
+  flex-shrink: 0;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 0.85rem;
+  padding: 7px 12px;
+  font-size: 0.8rem;
   color: var(--text-muted);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .tabs__item[aria-selected='true'] {
@@ -544,18 +578,22 @@
 }
 
 .tabs__select {
-  margin-left: auto;
+  flex-shrink: 0;
+  margin-left: 0;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  font-size: 0.85rem;
+  padding: 7px 10px;
+  font-size: 0.8rem;
 }
 
+/* ===========================================================
+   Skins
+   =========================================================== */
 .skin-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .skin-card {
@@ -563,7 +601,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 12px;
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
@@ -574,15 +612,18 @@
 
 .skin-card__fav {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background: rgba(10, 12, 17, 0.6);
   color: var(--text-muted);
   cursor: pointer;
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
 }
 
 .skin-card__fav[aria-pressed='true'] {
@@ -592,26 +633,26 @@
 
 .skin-card__img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: var(--radius-sm);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .skin-card__name {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
 }
 
 .skin-card__wear {
   font-size: 0.78rem;
   color: var(--text-muted);
-  margin: 4px 0 10px;
+  margin: 4px 0 8px;
 }
 
 .skin-card__price {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -625,58 +666,48 @@
   font-weight: 600;
 }
 
-.skin-card__delta--up {
-  color: var(--up);
-}
-
-.skin-card__delta--down {
-  color: var(--down);
-}
+.skin-card__delta--up { color: var(--up); }
+.skin-card__delta--down { color: var(--down); }
 
 /* ===========================================================
    Lower grid: collections + news
    =========================================================== */
 .lower-grid {
   display: grid;
-  grid-template-columns: 2.2fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 16px;
   align-items: start;
-}
-
-@media (max-width: 860px) {
-  .lower-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .collections__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .collection-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 18px 14px;
+  padding: 14px 10px;
   text-align: center;
 }
 
 .collection-card__icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 12px;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 8px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .collection-card h3 {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
 }
 
 .collection-card p {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   margin-top: 4px;
 }
@@ -685,37 +716,37 @@
   background: var(--bg-raised);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 16px 14px;
 }
 
 .news__list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .news__item {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
 }
 
 .news__thumb {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-sm);
   object-fit: cover;
   flex-shrink: 0;
 }
 
 .news__title {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   line-height: 1.3;
 }
 
 .news__date {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-faint);
   margin-top: 4px;
 }
@@ -723,15 +754,15 @@
 .news__banner {
   position: relative;
   display: block;
-  margin-top: 18px;
+  margin-top: 16px;
   border-radius: var(--radius-md);
   overflow: hidden;
-  min-height: 120px;
+  min-height: 110px;
 }
 
 .news__banner img {
   width: 100%;
-  height: 120px;
+  height: 110px;
   object-fit: cover;
 }
 
@@ -742,9 +773,129 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 800;
   line-height: 1.15;
   color: #fff;
   background: linear-gradient(120deg, rgba(255, 122, 31, 0.55), rgba(0, 0, 0, 0.35));
+}
+
+/* ===========================================================
+   Планшет (≥ 640px)
+   =========================================================== */
+@media (min-width: 640px) {
+  .sidebar { padding: 14px 18px; gap: 18px; }
+  .sidebar__logo-main { font-size: 1.5rem; }
+  .sidebar__logo-sub { font-size: 0.6rem; }
+  .sidebar__link { padding: 9px 14px; font-size: 0.88rem; }
+
+  .topbar { flex-wrap: nowrap; gap: 14px; }
+  .topbar__search { flex: 1 1 auto; order: 0; max-width: 420px; }
+  .topbar__bell { order: 0; }
+  .topbar__user { order: 0; padding: 4px 10px 4px 4px; }
+  .topbar__user-info { display: flex; }
+  .topbar__chevron { display: block; }
+
+  .hero {
+    min-height: 240px;
+    padding: 28px;
+    align-items: center;
+  }
+  .hero__title { font-size: 2rem; }
+  .hero__subtitle { font-size: 0.95rem; margin-top: 14px; }
+  .hero__badge { top: 20px; right: 22px; font-size: 0.8rem; }
+  .hero__scrim {
+    background: linear-gradient(100deg, rgba(6, 7, 10, 0.94) 15%, rgba(6, 7, 10, 0.55) 55%, rgba(6, 7, 10, 0.25) 100%);
+  }
+
+  .widgets-panel { padding: 20px 20px; }
+  .widgets-panel__actions {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .widgets-panel__actions .btn {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+  .widget-grid {
+    margin-top: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .tabs { flex-wrap: wrap; overflow-x: visible; padding-bottom: 0; }
+  .tabs__item { padding: 8px 16px; font-size: 0.85rem; }
+  .tabs__select { margin-left: auto; padding: 8px 12px; font-size: 0.85rem; }
+
+  .skin-cards { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .skin-card { padding: 16px; }
+  .skin-card__img { aspect-ratio: 4 / 3; margin-bottom: 12px; }
+
+  .collections__list { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .collection-card { padding: 18px 14px; }
+  .collection-card__icon { width: 56px; height: 56px; margin-bottom: 12px; }
+  .collection-card h3 { font-size: 0.85rem; }
+
+  .news { padding: 20px; }
+  .news__thumb { width: 52px; height: 52px; }
+  .news__title { font-size: 0.85rem; }
+  .news__banner img { height: 120px; }
+  .news__banner span { font-size: 1.15rem; }
+}
+
+/* ===========================================================
+   Десктоп (≥ 980px)
+   =========================================================== */
+@media (min-width: 980px) {
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    padding: 22px 18px;
+    border-right: 1px solid var(--border-soft);
+    border-bottom: none;
+    overflow: visible;
+  }
+  .sidebar__logo-main { font-size: 1.6rem; }
+  .sidebar__logo-sub { font-size: 0.62rem; }
+  .sidebar__nav { flex-direction: column; gap: 4px; }
+  .sidebar__link { padding: 10px 12px; font-size: 0.9rem; gap: 12px; }
+  .sidebar__icon { width: 18px; height: 18px; }
+  .sidebar__slogan {
+    display: block;
+    margin-top: auto;
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    font-style: italic;
+    border-left: 2px solid var(--border);
+    padding-left: 12px;
+  }
+
+  .hero { min-height: 300px; padding: 40px; }
+  .hero__title { font-size: 2.6rem; }
+
+  .widget__header { padding: 14px 16px 10px; }
+  .widget__body { padding: 4px 16px 18px; }
+  .players__value { font-size: 1.9rem; }
+  .price__value { font-size: 1.5rem; }
+  .price__chart { height: 60px; }
+  .quote__text { font-size: 0.95rem; }
+
+  .lower-grid {
+    grid-template-columns: 2.2fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* ===========================================================
+   Очень узкие (≤ 360px) — добиваем хвосты
+   =========================================================== */
+@media (max-width: 360px) {
+  .hero__badge { display: none; }
+  .widgets-panel__actions { grid-template-columns: 1fr; }
+  .collections__list { grid-template-columns: 1fr; }
+  .topbar__user { padding: 3px; }
 }
