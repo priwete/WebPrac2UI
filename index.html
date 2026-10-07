@@ -21,31 +21,31 @@
       </div>
 
       <nav class="sidebar__nav" aria-label="Основная навигация">
-        <a class="sidebar__link sidebar__link--active" href="#">
+        <a class="sidebar__link sidebar__link--active" href="#" data-nav="top">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5" /><path d="M6 10v9h12v-9" /></svg>
           Главная
         </a>
-        <a class="sidebar__link" href="#skins">
+        <a class="sidebar__link" href="#skins" data-nav="skins">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" /><rect x="13" y="4" width="7" height="7" rx="1.5" /><rect x="4" y="13" width="7" height="7" rx="1.5" /><rect x="13" y="13" width="7" height="7" rx="1.5" /></svg>
           Скины
         </a>
-        <a class="sidebar__link" href="#widget-grid">
+        <a class="sidebar__link" href="#widgets" data-nav="widgets">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" /></svg>
           Цены
         </a>
-        <a class="sidebar__link" href="#widget-grid">
+        <a class="sidebar__link" href="#widgets" data-nav="widgets">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17 10 11l4 4 6-7" /></svg>
           Тренды
         </a>
-        <a class="sidebar__link" href="#">
+        <a class="sidebar__link" href="#skins" data-nav="skins">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" /></svg>
           Мои избранные
         </a>
-        <a class="sidebar__link" href="#news">
+        <a class="sidebar__link" href="#news" data-nav="news">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="1.5" /><path d="M8 9h8M8 13h8M8 17h5" /></svg>
           Новости
         </a>
-        <a class="sidebar__link" href="#">
+        <a class="sidebar__link" href="#widgets" data-nav="widgets">
           <svg class="sidebar__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" /><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3h-4l-.6 2.5a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.6a7 7 0 0 0 0 2.4l-2 1.6 2 3.4 2.3-.9a7 7 0 0 0 2 1.2L10 21h4l.6-2.5a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.6c.07-.4.1-.8.1-1.2Z" /></svg>
           Настройки
         </a>
@@ -62,26 +62,26 @@
       <header class="topbar">
         <label class="topbar__search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
-          <input type="search" placeholder="Поиск скинов, коллекций…" />
+          <input type="search" placeholder="Поиск скинов, коллекций…" aria-label="Поиск скинов" />
           <kbd>Ctrl K</kbd>
         </label>
 
-        <button type="button" class="topbar__bell" aria-label="Уведомления">
+        <button type="button" class="topbar__bell" aria-label="Уведомления" data-new="true">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>
         </button>
 
-        <div class="topbar__user">
+        <button type="button" class="topbar__user" aria-label="Профиль пользователя">
           <img class="topbar__avatar" src="https://i.pinimg.com/474x/87/6a/29/876a2916e6c515aa3bcb92e22210846b.jpg?nii=t" alt="Аватар пользователя" width="36" height="36" loading="lazy" />
-          <div class="topbar__user-info">
+          <span class="topbar__user-info">
             <span class="topbar__user-name">Yusuf4ik</span>
             <span class="topbar__user-rank">Silver Elite</span>
-          </div>
+          </span>
           <svg class="topbar__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-        </div>
+        </button>
       </header>
 
       <!-- ============ HERO ============ -->
-      <section class="hero">
+      <section class="hero" id="top">
         <img class="hero__bg" src="https://avatars.mds.yandex.net/i?id=a43fd9f782ae650bff86ea4b130bca1a7bbaf4dc-5232646-images-thumbs&n=13" alt="" fetchpriority="high" />
         <div class="hero__scrim"></div>
         <span class="hero__badge">COUNTER<br />STRIKE 2</span>
@@ -92,7 +92,7 @@
         </div>
       </section>
 
-      <!-- ============ ВИДЖЕТЫ (OOP dashboard) ============ -->
+      <!-- ============ ВИДЖЕТЫ ============ -->
       <section class="widgets-panel" id="widgets" aria-labelledby="widgets-heading">
         <div class="widgets-panel__header">
           <h2 id="widgets-heading">Панель виджетов</h2>
@@ -113,23 +113,27 @@
       <!-- ============ SKINS ============ -->
       <section class="skins" id="skins" aria-labelledby="skins-heading">
         <div class="tabs" role="tablist" aria-label="Фильтр скинов">
-          <button class="tabs__item" role="tab" aria-selected="true">Популярные</button>
-          <button class="tabs__item" role="tab" aria-selected="false">Растущие</button>
-          <button class="tabs__item" role="tab" aria-selected="false">Падающие</button>
-          <button class="tabs__item" role="tab" aria-selected="false">Новые</button>
-          <button class="tabs__item" role="tab" aria-selected="false">Избранные</button>
+          <button class="tabs__item" role="tab" aria-selected="true" data-tab="popular">Популярные</button>
+          <button class="tabs__item" role="tab" aria-selected="false" data-tab="rising">Растущие</button>
+          <button class="tabs__item" role="tab" aria-selected="false" data-tab="falling">Падающие</button>
+          <button class="tabs__item" role="tab" aria-selected="false" data-tab="new">Новые</button>
+          <button class="tabs__item" role="tab" aria-selected="false" data-tab="favorites">Избранные</button>
           <select class="tabs__select" aria-label="Фильтр по качеству">
-            <option>Все качества</option>
-            <option>Factory New</option>
-            <option>Minimal Wear</option>
-            <option>Field-Tested</option>
+            <option value="all">Все качества</option>
+            <option value="Factory New">Factory New</option>
+            <option value="Minimal Wear">Minimal Wear</option>
+            <option value="Field-Tested">Field-Tested</option>
           </select>
         </div>
 
         <h2 class="visually-hidden" id="skins-heading">Список скинов</h2>
 
         <div class="skin-cards">
-          <article class="skin-card">
+          <article class="skin-card"
+                   data-skin-id="karambit-fade"
+                   data-wear="Factory New"
+                   data-delta="up"
+                   data-is-new="false">
             <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
             <img class="skin-card__img" src="https://community.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SD1iWwOpzj-1gSCGn20tztm_UyIn_JHKUbgYlWMcmQ-ZcskSwldS0MOnntAfd3YlMzH35jntXrnE8SOGRGG8" alt="★ Karambit Fade" width="400" height="300" loading="lazy" />
             <h3 class="skin-card__name">★ Karambit Fade</h3>
@@ -137,7 +141,11 @@
             <p class="skin-card__price">$ 2,847.32 <span class="skin-card__delta skin-card__delta--up">▲ 6.23%</span></p>
           </article>
 
-          <article class="skin-card">
+          <article class="skin-card"
+                   data-skin-id="awp-dragon-lore"
+                   data-wear="Minimal Wear"
+                   data-delta="up"
+                   data-is-new="false">
             <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
             <img class="skin-card__img" src="https://community.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk4veqYaF7IfysCnWRxuF4j-B-Xxa_nBovp3Pdwtj9cC_GaAd0DZdwQu9fuhS4kNy0NePntVTbjYpCyyT_3CgY5i9j_a9cBkcCWUKV" alt="AWP Dragon Lore" width="400" height="300" loading="lazy" />
             <h3 class="skin-card__name">AWP Dragon Lore</h3>
@@ -145,7 +153,11 @@
             <p class="skin-card__price">$ 12,430.00 <span class="skin-card__delta skin-card__delta--up">▲ 2.14%</span></p>
           </article>
 
-          <article class="skin-card">
+          <article class="skin-card"
+                   data-skin-id="ak-redline"
+                   data-wear="Field-Tested"
+                   data-delta="down"
+                   data-is-new="false">
             <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
             <img class="skin-card__img" src="https://community.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlPPNSI_-RHGavzedxuPUnFniykEtzsWWBzoyuIiifaAchDZUjTOZe4RC_w4buM-6z7wzbgokUyzK-0H08hRGDMA" alt="AK-47 Redline" width="400" height="300" loading="lazy" />
             <h3 class="skin-card__name">AK-47 Redline</h3>
@@ -153,7 +165,11 @@
             <p class="skin-card__price">$ 45.20 <span class="skin-card__delta skin-card__delta--down">▼ 1.32%</span></p>
           </article>
 
-          <article class="skin-card">
+          <article class="skin-card"
+                   data-skin-id="m4a1s-printstream"
+                   data-wear="Minimal Wear"
+                   data-delta="up"
+                   data-is-new="true">
             <button class="skin-card__fav" aria-pressed="false" aria-label="Добавить в избранное">♡</button>
             <img class="skin-card__img" src="https://community.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGMWrEwL9lj_F7Rienhgk1tjyIpYPwJiPTcAAoCpsiEO5ZsUbpm9C2Zuni4VHW3o5EzSX62HxP7Sg96-hWVqYi_6TJz1aW0nxrkGs" alt="M4A1-S Printstream" width="400" height="300" loading="lazy" />
             <h3 class="skin-card__name">M4A1-S Printstream</h3>
@@ -168,7 +184,7 @@
         <section class="collections" aria-labelledby="collections-heading">
           <div class="section-header">
             <h2 id="collections-heading">Топ коллекции</h2>
-            <a href="#" class="section-header__link">Смотреть все →</a>
+            <a href="#skins" class="section-header__link">Смотреть все →</a>
           </div>
           <div class="collections__list">
             <article class="collection-card">
@@ -202,7 +218,7 @@
         <aside class="news" id="news" aria-labelledby="news-heading">
           <div class="section-header">
             <h2 id="news-heading">Последние новости</h2>
-            <a href="#" class="section-header__link">Все новости →</a>
+            <a href="#news" class="section-header__link">Все новости →</a>
           </div>
           <ul class="news__list">
             <li class="news__item">
@@ -235,7 +251,7 @@
             </li>
           </ul>
 
-          <a class="news__banner" href="#">
+          <a class="news__banner" href="#skins">
             <img src="https://248006.selcdn.ru/main/iblock/e62/e622d2d66bdd05ba19225d963873013a/fd322029a00a3134aa8152aeff29e8d2.jpg" alt="" width="400" height="120" loading="lazy" />
             <span>ТА ЖЕ ИГРА<br />НОВАЯ ЭРА</span>
           </a>
