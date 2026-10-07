@@ -1,5 +1,5 @@
 /* ===========================================================
-   Sidebar — mobile-first: горизонтальная лента
+   Sidebar
    =========================================================== */
 .sidebar {
   width: 100%;
@@ -55,6 +55,7 @@
   font-size: 0.85rem;
   font-weight: 500;
   white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .sidebar__icon {
@@ -79,7 +80,7 @@
 }
 
 /* ===========================================================
-   Topbar — mobile-first: поиск на всю ширину
+   Topbar
    =========================================================== */
 .topbar {
   display: flex;
@@ -143,6 +144,24 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.topbar__bell:hover {
+  border-color: var(--accent);
+}
+
+.topbar__bell[data-new="true"]::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .topbar__bell svg {
@@ -159,7 +178,13 @@
   padding: 4px;
   border-radius: 999px;
   border: 1px solid var(--border);
+  background: var(--bg-card);
   cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.topbar__user:hover {
+  border-color: var(--accent);
 }
 
 .topbar__avatar {
@@ -173,6 +198,7 @@
   display: none;
   flex-direction: column;
   line-height: 1.15;
+  text-align: left;
 }
 
 .topbar__user-name {
@@ -193,7 +219,7 @@
 }
 
 /* ===========================================================
-   Hero — mobile-first: ниже, текст снизу
+   Hero
    =========================================================== */
 .hero {
   position: relative;
@@ -256,7 +282,7 @@
 }
 
 /* ===========================================================
-   Widgets panel — mobile-first: кнопки в 2 колонки
+   Widgets panel
    =========================================================== */
 .widgets-panel {
   background: var(--bg-raised);
@@ -325,7 +351,7 @@
 }
 
 /* ===========================================================
-   Widget chrome (UIComponent.render)
+   Widget chrome
    =========================================================== */
 .widget {
   background: var(--bg-card);
@@ -387,6 +413,14 @@
 
 .widget__status--error {
   color: var(--down);
+}
+
+.widget__status--loading {
+  color: var(--text-muted);
+}
+
+.widget__status--empty {
+  color: var(--text-faint);
 }
 
 .widget__empty {
@@ -545,7 +579,7 @@
 }
 
 /* ===========================================================
-   Tabs — horizontal scroll на мобильном
+   Tabs
    =========================================================== */
 .tabs {
   display: flex;
@@ -570,6 +604,11 @@
   color: var(--text-muted);
   cursor: pointer;
   white-space: nowrap;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.tabs__item:hover {
+  color: var(--text);
 }
 
 .tabs__item[aria-selected='true'] {
@@ -585,6 +624,8 @@
   border-radius: var(--radius-sm);
   padding: 7px 10px;
   font-size: 0.8rem;
+  color: var(--text);
+  cursor: pointer;
 }
 
 /* ===========================================================
@@ -603,6 +644,10 @@
   border-radius: var(--radius-md);
   padding: 12px;
   transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.skin-card[hidden] {
+  display: none;
 }
 
 .skin-card:hover {
@@ -624,6 +669,11 @@
   font-size: 1rem;
   display: grid;
   place-items: center;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.skin-card__fav:hover {
+  color: var(--accent);
 }
 
 .skin-card__fav[aria-pressed='true'] {
@@ -669,8 +719,18 @@
 .skin-card__delta--up { color: var(--up); }
 .skin-card__delta--down { color: var(--down); }
 
+.skin-cards__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+}
+
 /* ===========================================================
-   Lower grid: collections + news
+   Lower grid
    =========================================================== */
 .lower-grid {
   display: grid;
@@ -781,6 +841,32 @@
 }
 
 /* ===========================================================
+   Toast
+   =========================================================== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 20px);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  color: var(--text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.toast--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ===========================================================
    Планшет (≥ 640px)
    =========================================================== */
 @media (min-width: 640px) {
@@ -791,6 +877,7 @@
 
   .topbar { flex-wrap: nowrap; gap: 14px; }
   .topbar__search { flex: 1 1 auto; order: 0; max-width: 420px; }
+  .topbar__search kbd { display: inline-block; }
   .topbar__bell { order: 0; }
   .topbar__user { order: 0; padding: 4px 10px 4px 4px; }
   .topbar__user-info { display: flex; }
@@ -891,7 +978,7 @@
 }
 
 /* ===========================================================
-   Очень узкие (≤ 360px) — добиваем хвосты
+   Очень узкие (≤ 360px)
    =========================================================== */
 @media (max-width: 360px) {
   .hero__badge { display: none; }
