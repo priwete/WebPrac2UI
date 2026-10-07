@@ -29,7 +29,7 @@ export class PlayerCountWidget extends UIComponent {
 
     const note = document.createElement('p');
     note.className = 'widget__note';
-    note.textContent = 'Значение захардкожено для демонстрации.';
+    note.textContent = 'Онлайн CS2.';
     note.hidden = true;
 
     const refreshBtn = document.createElement('button');
