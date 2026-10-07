@@ -1,20 +1,18 @@
 import { UIComponent } from './UIComponent.js';
 
+const CS2_APP_ID = 730;
+
 /**
  * PlayerCountWidget — «Игроков онлайн».
  *
- * Официальный Steam Web API (ISteamUserStats/GetNumberOfCurrentPlayers)
- * не отдаёт заголовки CORS и не может быть вызван напрямую из браузера
- * без собственного сервера-прокси. Вместо этого используется публичное
- * SteamSpy API (ключ не нужен, CORS открыт) — оно даёт агрегированную,
- * не поминутную оценку активности игры. Ограничение явно указано
- * пользователю в самом виджете и в README.
+ * Источник: Steam Web API ISteamUserStats/GetNumberOfCurrentPlayers —
+ * публичный эндпоинт, ключ не нужен. Steam не отдаёт CORS-заголовки,
+ * поэтому запрос идёт через CORS-прокси allorigins.win (тот же приём,
+ * что уже используется в остальных виджетах проекта).
  */
 export class PlayerCountWidget extends UIComponent {
-  static CS2_APP_ID = 730;
-
   constructor(config) {
-    super({ ...config, title: config.title ?? 'Игроков онлайн (API: SteamSpy)' });
+    super({ ...config, title: config.title ?? 'Игроков онлайн (CS2)' });
   }
 
   renderBody() {
@@ -28,21 +26,19 @@ export class PlayerCountWidget extends UIComponent {
     value.className = 'players__value';
     value.hidden = true;
 
-    const note = document.createElement('p');
-    note.className = 'widget__note';
-    note.textContent = 'Оценка активности CS2 по данным SteamSpy, не поминутная статистика.';
-    note.hidden = true;
+    const updated = document.createElement('p');
+    updated.className = 'widget__note';
+    updated.hidden = true;
 
     const refreshBtn = document.createElement('button');
     refreshBtn.type = 'button';
     refreshBtn.className = 'btn btn--ghost';
     refreshBtn.textContent = 'Обновить';
 
-    wrap.append(status, value, note, refreshBtn);
-    this._elements = { status, value, note, refreshBtn };
+    wrap.append(status, value, updated, refreshBtn);
+    this._elements = { status, value, updated, refreshBtn };
 
     refreshBtn.addEventListener('click', () => this.#load(), { signal: this.signal });
-
     return wrap;
   }
 
@@ -51,7 +47,7 @@ export class PlayerCountWidget extends UIComponent {
   }
 
   async #load() {
-    const { status, value, note, refreshBtn } = this._elements;
+    const { status, value, updated, refreshBtn } = this._elements;
 
     this._fetchController?.abort();
     this._fetchController = new AbortController();
@@ -61,26 +57,32 @@ export class PlayerCountWidget extends UIComponent {
     status.textContent = 'Загрузка…';
     status.className = 'widget__status widget__status--loading';
     value.hidden = true;
-    note.hidden = true;
+    updated.hidden = true;
 
     try {
-      const target = `https://steamspy.com/api.php?request=appdetails&appid=${PlayerCountWidget.CS2_APP_ID}`;
+      const target =
+        `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${CS2_APP_ID}`;
       const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`;
+
+      const response = await fetch(url, { signal: this._fetchController.signal });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
       const data = await response.json();
-      const ccu = data?.ccu;
+      const count = data?.response?.player_count;
 
-      if (typeof ccu !== 'number' || ccu <= 0) {
+      if (typeof count !== 'number' || count <= 0) {
         status.hidden = false;
         status.textContent = 'Данные об онлайне пока недоступны.';
         status.className = 'widget__status widget__status--empty';
         return;
       }
 
-      value.textContent = ccu.toLocaleString('ru-RU');
+      value.textContent = count.toLocaleString('ru-RU');
       value.hidden = false;
-      note.hidden = false;
+
+      updated.textContent = `Обновлено: ${new Date().toLocaleTimeString('ru-RU')}`;
+      updated.hidden = false;
+
       status.hidden = true;
     } catch (error) {
       if (error.name === 'AbortError') return;
