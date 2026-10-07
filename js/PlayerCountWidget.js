@@ -1,18 +1,19 @@
 import { UIComponent } from './UIComponent.js';
 
-const CS2_APP_ID = 730;
-
 /**
  * PlayerCountWidget — «Игроков онлайн».
  *
- * Источник: Steam Web API ISteamUserStats/GetNumberOfCurrentPlayers —
- * публичный эндпоинт, ключ не нужен. Steam не отдаёт CORS-заголовки,
- * поэтому запрос идёт через CORS-прокси allorigins.win (тот же приём,
- * что уже используется в остальных виджетах проекта).
+ * Внешний API отключён: реального бесплатного публичного API с поминутным
+ * онлайном CS2 без ключа и с открытым CORS не существует. Значение
+ * захардкожено, но структура метода #load() сохранена — при появлении
+ * подходящего источника достаточно заменить тело на fetch.
  */
 export class PlayerCountWidget extends UIComponent {
+  // Захардкоженное значение онлайна CS2 (примерная цифра на момент сдачи)
+  static CS2_ONLINE = 842_310;
+
   constructor(config) {
-    super({ ...config, title: config.title ?? 'Игроков онлайн (CS2)' });
+    super({ ...config, title: config.title ?? 'Игроков онлайн' });
   }
 
   renderBody() {
@@ -26,19 +27,21 @@ export class PlayerCountWidget extends UIComponent {
     value.className = 'players__value';
     value.hidden = true;
 
-    const updated = document.createElement('p');
-    updated.className = 'widget__note';
-    updated.hidden = true;
+    const note = document.createElement('p');
+    note.className = 'widget__note';
+    note.textContent = 'Значение захардкожено для демонстрации.';
+    note.hidden = true;
 
     const refreshBtn = document.createElement('button');
     refreshBtn.type = 'button';
     refreshBtn.className = 'btn btn--ghost';
     refreshBtn.textContent = 'Обновить';
 
-    wrap.append(status, value, updated, refreshBtn);
-    this._elements = { status, value, updated, refreshBtn };
+    wrap.append(status, value, note, refreshBtn);
+    this._elements = { status, value, note, refreshBtn };
 
     refreshBtn.addEventListener('click', () => this.#load(), { signal: this.signal });
+
     return wrap;
   }
 
@@ -46,55 +49,23 @@ export class PlayerCountWidget extends UIComponent {
     this.#load();
   }
 
-  async #load() {
-    const { status, value, updated, refreshBtn } = this._elements;
-
-    this._fetchController?.abort();
-    this._fetchController = new AbortController();
+  #load() {
+    const { status, value, note, refreshBtn } = this._elements;
 
     refreshBtn.disabled = true;
     status.hidden = false;
     status.textContent = 'Загрузка…';
     status.className = 'widget__status widget__status--loading';
     value.hidden = true;
-    updated.hidden = true;
+    note.hidden = true;
 
-    try {
-      const target =
-        `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${CS2_APP_ID}`;
-      const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`;
-
-      const response = await fetch(url, { signal: this._fetchController.signal });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-      const data = await response.json();
-      const count = data?.response?.player_count;
-
-      if (typeof count !== 'number' || count <= 0) {
-        status.hidden = false;
-        status.textContent = 'Данные об онлайне пока недоступны.';
-        status.className = 'widget__status widget__status--empty';
-        return;
-      }
-
-      value.textContent = count.toLocaleString('ru-RU');
+    // Имитация задержки ответа, чтобы поведение виджета было привычным
+    setTimeout(() => {
+      value.textContent = PlayerCountWidget.CS2_ONLINE.toLocaleString('ru-RU');
       value.hidden = false;
-
-      updated.textContent = `Обновлено: ${new Date().toLocaleTimeString('ru-RU')}`;
-      updated.hidden = false;
-
+      note.hidden = false;
       status.hidden = true;
-    } catch (error) {
-      if (error.name === 'AbortError') return;
-      status.hidden = false;
-      status.textContent = 'Не удалось получить данные об онлайне.';
-      status.className = 'widget__status widget__status--error';
-    } finally {
       refreshBtn.disabled = false;
-    }
-  }
-
-  onDestroy() {
-    this._fetchController?.abort();
+    }, 250);
   }
 }
