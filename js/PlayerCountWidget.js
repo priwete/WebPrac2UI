@@ -64,8 +64,7 @@ export class PlayerCountWidget extends UIComponent {
     note.hidden = true;
 
     try {
-      const target = `https://steamspy.com/api.php?request=appdetails&appid=${PlayerCountWidget.CS2_APP_ID}`;
-      const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`;
+      const url = `https://steamspy.com/api.php?request=appdetails&appid=${PlayerCountWidget.CS2_APP_ID}`;
       const response = await fetch(url, { signal: this._fetchController.signal });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
